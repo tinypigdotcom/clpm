@@ -2,7 +2,7 @@
 # purpose: get variables from "p" project files
 PERL=perl
 
-#    Copyright (C) 2014  David M. Bradford
+#    Copyright (C) 2014, 2015 David M. Bradford
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
