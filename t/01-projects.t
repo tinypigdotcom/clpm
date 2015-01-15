@@ -52,6 +52,14 @@ if ( !-d $tmp_dir ) {
     mkdir $tmp_dir or die "mkdir $tmp_dir failed: $!";
 }
 
+my $first_header = q{
+        ^
+        Project:[ ]apple[ ]\(banana\)
+        \s+
+        Current[ ]files:
+        \s+
+};
+
 my $BLANK_PROJECTS_LIST                = BLANK_PROJECTS_LIST();
 my $FIRST_PROJECT                      = FIRST_PROJECT();
 my $FIRST_PROJECT_LIST                 = FIRST_PROJECT_LIST();
@@ -75,11 +83,11 @@ $ENV{EDITOR} = '/usr/bin/cat';
 my @test_files = make_test_files();
 
 my $proj_output = `p`;
-is( $proj_output, $BLANK_PROJECTS_LIST, 'Blank projects list' );
+is( $proj_output, $BLANK_PROJECTS_LIST, 'Blank projects list' );           #001
 $proj_output = `p apple banana`;
-is( $proj_output, $FIRST_PROJECT, 'First project' );
+is( $proj_output, $FIRST_PROJECT, 'First project' );                       #002
 $proj_output = `p`;
-is( $proj_output, $FIRST_PROJECT_LIST, 'First project list' );
+is( $proj_output, $FIRST_PROJECT_LIST, 'First project list' );             #003
 
 my @remove_files;
 for my $file (@test_files) {
@@ -91,16 +99,16 @@ for my $file (@test_files) {
     push @remove_files, $letter;
 }
 $proj_output = `f`;
-like( $proj_output, $FIRST_PROJECT_FILES_RE, 'First project files' );
+like( $proj_output, $FIRST_PROJECT_FILES_RE, 'First project files' );      #004
 $proj_output = `fa`;
-like( $proj_output, qr/contents_papaya/,     'Edit all files 1' );
-like( $proj_output, qr/contents_raspberry/,  'Edit all files 2' );
-like( $proj_output, qr/contents_strawberry/, 'Edit all files 3' );
+like( $proj_output, qr/contents_papaya/,     'Edit all files 1' );         #005
+like( $proj_output, qr/contents_raspberry/,  'Edit all files 2' );         #006
+like( $proj_output, qr/contents_strawberry/, 'Edit all files 3' );         #007
 
 my $letter = shift @remove_files;
 $proj_output = `f -$letter`;
 $proj_output = `f`;
-like(
+like(                                                                      #008
     $proj_output,
     $FIRST_PROJECT_FILES_MINUS_ONE_RE,
     'First project files minus one'
@@ -109,7 +117,7 @@ like(
 $letter      = shift @remove_files;
 $proj_output = `f -$letter`;
 $proj_output = `f`;
-like(
+like(                                                                      #009
     $proj_output,
     $FIRST_PROJECT_FILES_MINUS_TWO_RE,
     'First project files minus two'
@@ -118,14 +126,14 @@ like(
 $letter      = shift @remove_files;
 $proj_output = `f -$letter`;
 $proj_output = `f`;
-like(
+like(                                                                      #010
     $proj_output,
     $FIRST_PROJECT_FILES_MINUS_THREE_RE,
     'First project files minus three'
 );
 
 $proj_output = `z`;
-like(
+like(                                                                      #011
     $proj_output,
     $Z_RE,
     'z'
@@ -134,7 +142,7 @@ like(
 $proj_output = `p orange starfruit`;
 $proj_output = `p`;
 
-like(
+like(                                                                      #012
     $proj_output,
     $TWO_PROJECTS,
     'Two projects'
@@ -149,14 +157,14 @@ for my $file (@test_files) {
     push @remove_files, $letter;
 }
 $proj_output = `f`;
-like( $proj_output, $SECOND_PROJECT_FILES_RE, 'Second project files' );
+like( $proj_output, $SECOND_PROJECT_FILES_RE, 'Second project files' );    #013
 $proj_output = `fa`;
-like( $proj_output, qr/contents_papaya/,     'Edit all files 2.1' );
-like( $proj_output, qr/contents_raspberry/,  'Edit all files 2.2' );
-like( $proj_output, qr/contents_strawberry/, 'Edit all files 2.3' );
+like( $proj_output, qr/contents_papaya/,     'Edit all files 2.1' );       #014
+like( $proj_output, qr/contents_raspberry/,  'Edit all files 2.2' );       #015
+like( $proj_output, qr/contents_strawberry/, 'Edit all files 2.3' );       #016
 
 sub make_test_files {
-    my @tf = qw(papaya raspberry strawberry);
+    my @tf = qw(papaya raspberry strawberry date elderberry fig);
     my @retval;
     for (@tf) {
         my $test_file = "$tmp_dir/$_";
@@ -205,10 +213,12 @@ sub FIRST_PROJECT_LIST {
 
 sub FIRST_PROJECT_FILES_RE {
     return qr{
-        ^
-        Project:[ ]apple[ ]\(banana\)
+        $first_header
+        d[ ]date\s+$tmp_dir
         \s+
-        Current[ ]files:
+        e[ ]elderberry\s+$tmp_dir
+        \s+
+        f[ ]fig\s+$tmp_dir
         \s+
         p[ ]papaya\s+$tmp_dir
         \s+
@@ -227,6 +237,12 @@ sub SECOND_PROJECT_FILES_RE {
         \s+
         Current[ ]files:
         \s+
+        d[ ]date\s+$tmp_dir
+        \s+
+        e[ ]elderberry\s+$tmp_dir
+        \s+
+        f[ ]fig\s+$tmp_dir
+        \s+
         p[ ]papaya\s+$tmp_dir
         \s+
         r[ ]raspberry\s+$tmp_dir
@@ -244,6 +260,12 @@ sub FIRST_PROJECT_FILES_MINUS_ONE_RE {
         \s+
         Current[ ]files:
         \s+
+        d[ ]date\s+$tmp_dir
+        \s+
+        e[ ]elderberry\s+$tmp_dir
+        \s+
+        f[ ]fig\s+$tmp_dir
+        \s+
         r[ ]raspberry\s+$tmp_dir
         \s+
         s[ ]strawberry\s+$tmp_dir
@@ -259,6 +281,12 @@ sub FIRST_PROJECT_FILES_MINUS_TWO_RE {
         \s+
         Current[ ]files:
         \s+
+        d[ ]date\s+$tmp_dir
+        \s+
+        e[ ]elderberry\s+$tmp_dir
+        \s+
+        f[ ]fig\s+$tmp_dir
+        \s+
         s[ ]strawberry\s+$tmp_dir
         \s+
         $
@@ -271,6 +299,12 @@ sub FIRST_PROJECT_FILES_MINUS_THREE_RE {
         Project:[ ]apple[ ]\(banana\)
         \s+
         Current[ ]files:
+        \s+
+        d[ ]date\s+$tmp_dir
+        \s+
+        e[ ]elderberry\s+$tmp_dir
+        \s+
+        f[ ]fig\s+$tmp_dir
         \s+
         $
     }x;
