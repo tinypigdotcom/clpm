@@ -197,9 +197,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ f
     Project: s (Shopping Cart)
     Current files:
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Add some more files (note case sensitivity)
@@ -209,12 +209,12 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ f
     Project: s (Shopping Cart)
     Current files:
-    C Changes                                            /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    M MANIFEST                                           /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    R README                                             /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    C Changes                           /home/dbradford/shopping_cart/ShoppingCart
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    M MANIFEST                          /home/dbradford/shopping_cart/ShoppingCart
+    R README                            /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Edit a couple files
@@ -233,9 +233,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ f
     Project: s (Shopping Cart)
     Current files:
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Add a command, then run it
@@ -332,7 +332,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 ### Add more files in other directories
     $ pwd
-    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
+    /home/dbradford/shopping_cart/ShoppingCart
     $ cd ..
     $ ls
     ShoppingCart  www
@@ -345,26 +345,26 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ f
     Project: s (Shopping Cart)
     Current files:
-    j cartItems.js                                       /home/dbradford/tmp/clpmdoc/shopping_cart/www/script
-    c home.css                                           /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    h shopping_cart.html                                 /home/dbradford/tmp/clpmdoc/shopping_cart/www/page
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    j cartItems.js                      /home/dbradford/shopping_cart/www/script
+    c home.css                          /home/dbradford/shopping_cart/www/style
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    h shopping_cart.html                /home/dbradford/shopping_cart/www/page
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Change to the directory of a given file
     $ d s
     $ pwd
-    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
+    /home/dbradford/shopping_cart/ShoppingCart/lib
     $ d c
     $ pwd
-    /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
+    /home/dbradford/shopping_cart/www/style
 
 
 ### Use af to locate and add more files
     $ pwd
-    /home/dbradford/tmp/clpmdoc/shopping_cart
+    /home/dbradford/shopping_cart
     $ export AF_DIR=`pwd`
     $ af html
     0 ./www/page/items.html
@@ -374,13 +374,13 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 ### Use v to assign full file paths to shell variables
     $ v
-    j=/home/dbradford/tmp/clpmdoc/shopping_cart/www/script/cartItems.js
-    t=/home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t/ShoppingCart.t
-    h=/home/dbradford/tmp/clpmdoc/shopping_cart/www/page/shopping_cart.html
-    s=/home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib/ShoppingCart.pm
-    c=/home/dbradford/tmp/clpmdoc/shopping_cart/www/style/home.css
-    m=/home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/Makefile.PL
-    l=/home/dbradford/tmp/clpmdoc/shopping_cart/www/page/login.html
+    j=/home/dbradford/shopping_cart/www/script/cartItems.js
+    t=/home/dbradford/shopping_cart/ShoppingCart/t/ShoppingCart.t
+    h=/home/dbradford/shopping_cart/www/page/shopping_cart.html
+    s=/home/dbradford/shopping_cart/ShoppingCart/lib/ShoppingCart.pm
+    c=/home/dbradford/shopping_cart/www/style/home.css
+    m=/home/dbradford/shopping_cart/ShoppingCart/Makefile.PL
+    l=/home/dbradford/shopping_cart/www/page/login.html
     $ cp $l $l.sv
     $ cp $s $l
     $ less $l
@@ -396,36 +396,36 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ p cp s sw
     Project: sw (Shopping Cart)
     Current files:
-    j cartItems.js                                       /home/dbradford/tmp/clpmdoc/shopping_cart/www/script
-    c home.css                                           /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
-    l login.html                                         /home/dbradford/tmp/clpmdoc/shopping_cart/www/page
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    j cartItems.js                      /home/dbradford/shopping_cart/www/script
+    c home.css                          /home/dbradford/shopping_cart/www/style
+    l login.html                        /home/dbradford/shopping_cart/www/page
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Then rename the new project
     $ p sw 'Shopping Cart (rework)'
     Project: sw (Shopping Cart (rework))
     Current files:
-    j cartItems.js                                       /home/dbradford/tmp/clpmdoc/shopping_cart/www/script
-    c home.css                                           /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
-    l login.html                                         /home/dbradford/tmp/clpmdoc/shopping_cart/www/page
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    j cartItems.js                      /home/dbradford/shopping_cart/www/script
+    c home.css                          /home/dbradford/shopping_cart/www/style
+    l login.html                        /home/dbradford/shopping_cart/www/page
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Move projects with 'p mv'
     $ p mv sw rw
     Project: rw (Shopping Cart (rework))
     Current files:
-    j cartItems.js                                       /home/dbradford/tmp/clpmdoc/shopping_cart/www/script
-    c home.css                                           /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
-    l login.html                                         /home/dbradford/tmp/clpmdoc/shopping_cart/www/page
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    j cartItems.js                      /home/dbradford/shopping_cart/www/script
+    c home.css                          /home/dbradford/shopping_cart/www/style
+    l login.html                        /home/dbradford/shopping_cart/www/page
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
 
 ### Search projects with 'p \?text'
@@ -436,10 +436,10 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ p ?rework
     Project: rw (Shopping Cart (rework))
     Current files:
-    j cartItems.js                                       /home/dbradford/tmp/clpmdoc/shopping_cart/www/script
-    c home.css                                           /home/dbradford/tmp/clpmdoc/shopping_cart/www/style
-    l login.html                                         /home/dbradford/tmp/clpmdoc/shopping_cart/www/page
-    m Makefile.PL                                        /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart
-    s ShoppingCart.pm                                    /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/lib
-    t ShoppingCart.t                                     /home/dbradford/tmp/clpmdoc/shopping_cart/ShoppingCart/t
+    j cartItems.js                      /home/dbradford/shopping_cart/www/script
+    c home.css                          /home/dbradford/shopping_cart/www/style
+    l login.html                        /home/dbradford/shopping_cart/www/page
+    m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
+    s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
+    t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
 
