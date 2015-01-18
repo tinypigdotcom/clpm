@@ -50,7 +50,7 @@
 Note: for this next command to work as-is, alias must be set for "v" as
 specified below in "INSTALLATION". Otherwise you can try `. v`
 
-    $ v # assign all projects files to shell variables in the current shell
+    $ . v # assign all projects files to shell variables in the current shell
     v=/home/dbradford/.vimrc
     c=/home/dbradford/.vim/colors/vividchalk.vim
 
@@ -356,10 +356,10 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Change to the directory of a given file
-    $ d s
+    $ . d s # you can do it without the '.' if you set up alias d='. d'
     $ pwd
     /home/dbradford/shopping_cart/ShoppingCart/lib
-    $ d c
+    $ . d c
     $ pwd
     /home/dbradford/shopping_cart/www/style
 
@@ -375,7 +375,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Use v to assign full file paths to shell variables
-    $ v
+    $ . v # you can do it without the '.' if you set up alias v='. v'
     j=/home/dbradford/shopping_cart/www/script/cartItems.js
     t=/home/dbradford/shopping_cart/ShoppingCart/t/ShoppingCart.t
     h=/home/dbradford/shopping_cart/www/page/shopping_cart.html
