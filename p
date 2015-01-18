@@ -29,9 +29,7 @@ use File::Basename;
 use Hash::Util qw(lock_keys);
 use IO::File;
 use Storable qw(dclone);
-use Storable;
 
-my $separator = "%%%\n";
 my $g;
 
 our $VERSION = '1.0';
@@ -48,10 +46,12 @@ sub set_current_project {
         shift @{$g->{data}->{previous}};
     }
     $g->{data}->{current} = $to;
+    return;
 }
 
 sub unset_current_project {
     $g->{data}->{current} = '';
+    return;
 }
 
 sub is_valid_project {
@@ -268,6 +268,7 @@ sub list_projects {
         $label //= '';
         printf "$asterisk %-10s %-15s\n", $_, $label;
     }
+    return;
 }
 
 sub search {
@@ -299,6 +300,7 @@ sub search {
     else {
         print $output;
     }
+    return;
 }
 
 sub func_p {
@@ -653,14 +655,12 @@ sub main {
       files
       h_ident
       infile
-      legacy_infile
       prog
     );
 
     lock_keys( %{$g}, @g_keys );
 
     $g->{args}          = \@args;
-    $g->{legacy_infile} = "$ENV{HOME}/.prc";
     $g->{infile}        = $ENV{PDUMP} || "$ENV{HOME}/.pdump";
 
     my @ident = ( 0 .. 9, 'a' .. 'z', 'A' .. 'Z' );
@@ -688,9 +688,6 @@ sub main {
 
     if ( -e $g->{infile} ) {
         dump_read();
-    }
-    elsif ( -r $g->{legacy_infile} ) {
-        $g->{data} = retrieve( $g->{legacy_infile} );
     }
     else {
         $g->{data} = {

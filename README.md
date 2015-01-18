@@ -58,7 +58,8 @@ Separate scripts, put somewhere in `$PATH`
     d     # change to directory of specified file
     v     # set shell variables for file shortcuts
 
-Add the following lines to your `.bash_profile`:
+Add the following lines to your `.cshrc` file (for csh and tcsh), `.profile`
+(for sh and ksh), or `.bash_profile` (for bash):
 
     alias d='. d'
     alias v='. v'
@@ -85,11 +86,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 ## Todo
+
 1. Add tests to cover all functionality
 1. Create installer
 1. Docs should cover same material between 'p --help' and 'README.md'
 1. Create video documenting use
 1. Create blog post based on documentation
+
+## Technical Notes
+1. `clpm` uses `Data::Dumper` and `eval` for persistance. It used `Storable` initially, but after two separate instances of data corruption, that was abandoned in favor of `YAML`, which in turn wasn't available in many environments.
 
 ## Detailed Usage
 
