@@ -253,7 +253,8 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     $ x t
     make test
     cp lib/ShoppingCart.pm blib/lib/ShoppingCart.pm
-    PERL_DL_NONLAZY=1 /usr/bin/perl.exe "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
+    PERL_DL_NONLAZY=1 /usr/bin/perl.exe "-MExtUtils::Command::MM" "-e"
+    "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
     t/ShoppingCart.t .. ok
     All tests successful.
     Files=1, Tests=1,  0 wallclock secs ( 0.03 usr  0.05 sys +  0.03 cusr  0.12 csys =  0.23 CPU)
@@ -320,7 +321,8 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     Writing MYMETA.yml and MYMETA.json
     make test
     cp lib/ShoppingCart.pm blib/lib/ShoppingCart.pm
-    PERL_DL_NONLAZY=1 /usr/bin/perl.exe "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
+    PERL_DL_NONLAZY=1 /usr/bin/perl.exe "-MExtUtils::Command::MM" "-e"
+    "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
     t/ShoppingCart.t .. ok
     All tests successful.
     Files=1, Tests=1,  0 wallclock secs ( 0.03 usr  0.02 sys +  0.03 cusr  0.05 csys =  0.12 CPU)
