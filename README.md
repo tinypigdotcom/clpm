@@ -1,5 +1,7 @@
 # clpm - Command Line Project Manager
 
+Command Line Project Manager (clpm) is designed to make managing sets of files easier. Files can be grouped into projects and then each file can be edited with a simple command: f \[space\]\[letter representing file\] \[ENTER\]. Sets of commands can also be associated with the group.
+
 ## Synopsis
 
     $ p v "My Vimfiles" # create a new project with shortcut "v" called "My Vimfiles"
@@ -38,10 +40,6 @@
     $ cat $c >>$r # use shell commands to work with this set of files
 
 Note: if the set of files changes you will need to run `v` again.
-
-## Description
-
-Command Line Project Manager (clpm) is designed to make managing sets of files easier. Files can be grouped into projects and then each file can be edited with a simple command: f \[space\]\[letter representing file\] \[ENTER\]
 
 ## Installation
 
