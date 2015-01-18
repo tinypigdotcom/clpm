@@ -32,7 +32,7 @@ use Storable qw(dclone);
 
 my $g;
 
-our $VERSION = '1.0';
+our $VERSION = '1.0.1';
 our $VAR1;
 
 my $max_prev_projects = 50;
