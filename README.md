@@ -1,43 +1,26 @@
 # clpm - Command Line Project Manager
 
-## Overview
-    z  - this listing
-    f  - manage files
-         edit file 1, 3, and L: $ f 13L
-         add file to the list : $ f , /tmp/a.dmb /etc/hosts /etc/passwd
-         remove file 1, 3, L  : $ f -13L
-    x  - manage commands (same basic format as f)
-         show list of cmds:     $ x
-         run cmd 1, 3, and L:   $ x 13L
-         edit cmd 1, 3, and L:  $ x .13L
-         add cmd to the list :  $ x , 'echo hey' 'Optional Label'
-            NOTE: surround command with quotes
-         add cmd with label L:  $ x L 'echo howdy; echo there' 'Optional Label'
-         remove cmd 1, 3, L  :  $ x -13L
-    p  - change project/view list of projects
-         switch to project:     $ p myproj
-         remove project:        $ p -myproj
-
 ## Synopsis
 
-    $ p d "My Vimfiles" # create a new project with shortcut "d" called "My Vimfiles"
+    $ p v "My Vimfiles" # create a new project with shortcut "v" called "My Vimfiles"
     $ p                 # list all projects
     Projects:
-    * d          My Vimfiles
+    * v          My Vimfiles
 
-    $ f v .vimrc                     # add .vimrc to this project with shortcut "v"
+    $ f r .vimrc                     # add .vimrc to this project with shortcut "r"
     $ f c .vim/colors/vividchalk.vim # add this file with shortcut "c"
     $ f                              # list all files in the current project
-    Project: d (My Vimfiles)
+    Project: v (My Vimfiles)
     Current files:
-    v .vimrc                                             /home/dbradford
+    r .vimrc                                             /home/dbradford
     c vividchalk.vim                                     /home/dbradford/.vim/colors
 
-    $ f b # edit file assigned to "b" with vim
+    $ f c # edit file assigned to "c" with vim
 
     $ fa  # edit all files in project with vim
 
-    $ d t # cd to directory containing file with shortcut "t"
+    $ . d t # cd to directory containing file with shortcut "t"
+            # you can do it without the '.' if you set up alias d='. d'
 
     $ x t ". d m;make test" # add command with shortcut "t"
     $ x t                   # execute command assigned to shortcut "t"
@@ -47,14 +30,12 @@
     0.03 csys =  0.14 CPU)
     Result: PASS
 
-Note: for this next command to work as-is, alias must be set for "v" as
-specified below in "INSTALLATION". Otherwise you can try `. v`
-
     $ . v # assign all projects files to shell variables in the current shell
-    v=/home/dbradford/.vimrc
+          # you can do it without the '.' if you set up alias v='. v'
+    r=/home/dbradford/.vimrc
     c=/home/dbradford/.vim/colors/vividchalk.vim
 
-    $ cat $c >>$v # use shell commands to work with this set of files
+    $ cat $c >>$r # use shell commands to work with this set of files
 
 Note: if the set of files changes you will need to run `v` again.
 
@@ -66,17 +47,17 @@ Command Line Project Manager (clpm) is designed to make managing sets of files e
 
 Put "p" in your `$PATH` and then create these links to p in the same directory:
 
-    f     # file edit
+    f     # edit file
     fa    # edit all files
     x     # execute command
     xa    # execute all commands
     z     # get help
-    zdir  # get directory of file
+    zdir  # get directory of file (typically not used directly by user)
 
 Separate scripts, put somewhere in `$PATH`
 
     af    # find and add files
-    d     # change to file directory
+    d     # change to directory of specified file
     v     # set shell variables for file shortcuts
 
 Add the following lines to your `.bash_profile`:
@@ -106,11 +87,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 ## Todo
-1. add additional functionality in documentation: p cp, p mv, af, p ?search, f -, f multiple
-1. INSTALLER!!
+1. Add tests to cover all functionality
+1. Create installer
+1. Docs should cover same material between 'p --help' and 'README.md'
+1. Create video documenting use
+1. Create blog post based on documentation
 
+## Detailed Usage
 
-### Get help, see usage
+### Get help
+
     $ z # or p --help or f --help or x --help etc
     Command Line Program Managers (clpm) v1.0
     Help commands:
@@ -142,6 +128,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Get project listing
+
     $ p
     Projects:
       f          rpg fight simulator
@@ -150,9 +137,11 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Create a new project
+
     $ p s 'Shopping Cart'
     Project: s (Shopping Cart)
     Current files:
+
     $ p
     Projects:
       f          rpg fight simulator
@@ -162,6 +151,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Add some files
+
     $ find .
     .
     ./ShoppingCart
@@ -182,7 +172,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     ./www/script/cartItems.js
     ./www/style
     ./www/style/home.css
+
     $ cd ShoppingCart/
+
     $ ls -l
     total 7
     -rw-rw-r--  1 dbradford None  157 Jan 17 16:34 Changes
@@ -191,9 +183,13 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     -rw-rw-r--  1 dbradford None   73 Jan 17 16:34 MANIFEST
     -rw-rw-r--  1 dbradford None 1191 Jan 17 16:34 README
     drwxrwxr-x+ 1 dbradford None    0 Jan 17 16:34 t
+
     $ f m Makefile.PL
+
     $ f t t/ShoppingCart.t
+
     $ f s lib/ShoppingCart.pm
+
     $ f
     Project: s (Shopping Cart)
     Current files:
@@ -203,9 +199,13 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Add some more files (note case sensitivity)
+
     $ f C Changes
+
     $ f M MANIFEST
+
     $ f R README
+
     $ f
     Project: s (Shopping Cart)
     Current files:
@@ -218,18 +218,23 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Edit a couple files
+
     $ f st
     2 files to edit
 
 
 ### Edit all files
+
     $ fa
     6 files to edit
 
 
 ### Remove one file, then remove two others
+
     $ f -R
+
     $ f -CM
+
     $ f
     Project: s (Shopping Cart)
     Current files:
@@ -239,7 +244,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Add a command, then run it
+
     $ x p 'perl Makefile.PL'
+
     $ x p
     perl Makefile.PL
     Checking if your kit is complete...
@@ -249,7 +256,9 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Add and run more commands, then run them
+
     $ x t 'make test'
+
     $ x t
     make test
     cp lib/ShoppingCart.pm blib/lib/ShoppingCart.pm
@@ -284,6 +293,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     mv Makefile Makefile.old > /dev/null 2>&1
 
     $ x C 'make realclean'
+
     $ x C
     make realclean
     rm -f \
@@ -313,6 +323,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Run two commands in sequence
+
     $ x pt
     perl Makefile.PL
     Checking if your kit is complete...
@@ -333,17 +344,26 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Add more files in other directories
+
     $ pwd
     /home/dbradford/shopping_cart/ShoppingCart
+
     $ cd ..
+
     $ ls
     ShoppingCart  www
+
     $ cd www
+
     $ f h page/
     items.html          login.html          shopping_cart.html
+
     $ f h page/shopping_cart.html
+
     $ f j script/cartItems.js
+
     $ f c style/home.css
+
     $ f
     Project: s (Shopping Cart)
     Current files:
@@ -356,18 +376,25 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Change to the directory of a given file
+
     $ . d s # you can do it without the '.' if you set up alias d='. d'
+
     $ pwd
     /home/dbradford/shopping_cart/ShoppingCart/lib
+
     $ . d c
+
     $ pwd
     /home/dbradford/shopping_cart/www/style
 
 
 ### Use af to locate and add more files
+
     $ pwd
     /home/dbradford/shopping_cart
+
     $ export AF_DIR=`pwd`
+
     $ af html
     0 ./www/page/items.html
     1 ./www/page/login.html
@@ -375,6 +402,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Use v to assign full file paths to shell variables
+
     $ . v # you can do it without the '.' if you set up alias v='. v'
     j=/home/dbradford/shopping_cart/www/script/cartItems.js
     t=/home/dbradford/shopping_cart/ShoppingCart/t/ShoppingCart.t
@@ -383,18 +411,23 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     c=/home/dbradford/shopping_cart/www/style/home.css
     m=/home/dbradford/shopping_cart/ShoppingCart/Makefile.PL
     l=/home/dbradford/shopping_cart/www/page/login.html
+
     $ cp $l $l.sv
+
     $ cp $s $l
+
     $ less $l
 
 
 ### Copy projects with 'p cp'
+
     $ p
     Projects:
       f          rpg fight simulator
       go         getopts experiment
       sst        shell script template
     * s          Shopping Cart
+
     $ p cp s sw
     Project: sw (Shopping Cart)
     Current files:
@@ -407,6 +440,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Then rename the new project
+
     $ p sw 'Shopping Cart (rework)'
     Project: sw (Shopping Cart (rework))
     Current files:
@@ -419,6 +453,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Move projects with 'p mv'
+
     $ p mv sw rw
     Project: rw (Shopping Cart (rework))
     Current files:
@@ -431,10 +466,12 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 
 ### Search projects with 'p \?text'
+
     $ p \?shop
     Projects:
       rw         Shopping Cart (rework)
       s          Shopping Cart
+
     $ p ?rework
     Project: rw (Shopping Cart (rework))
     Current files:
