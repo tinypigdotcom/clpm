@@ -17,9 +17,10 @@ Command Line Project Manager (clpm) is designed to make managing sets of files e
     r .vimrc                                             /home/dbradford
     c vividchalk.vim                                     /home/dbradford/.vim/colors
 
-    $ f c # edit file assigned to "c" with vim
+    $ export EDITOR=vim
+    $ f c # edit file assigned to "c" with $EDITOR
 
-    $ fa  # edit all files in project with vim
+    $ fa  # edit all files in project with $EDITOR
 
     $ . d t # cd to directory containing file with shortcut "t"
             # you can do it without the '.' if you set up alias d='. d'
@@ -92,16 +93,17 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 1. Docs should cover same material between 'p --help' and 'README.md'
 1. Create video documenting use
 1. Create blog post based on documentation
+1. further improvements to code, if nothing else, then via Perl::Critic
 
 ## Technical Notes
-1. `clpm` uses `Data::Dumper` and `eval` for persistance. It used `Storable` initially, but after two separate instances of data corruption, that was abandoned in favor of `YAML`, which in turn wasn't available in many environments.
+1. `clpm` uses `Data::Dumper` and `eval` for persistance. It used `Storable` initially, but after two separate instances of data corruption, that was abandoned in favor of `YAML`, which in turn wasn't available in many environments, thus `Data::Dumper`.
 
 ## Detailed Usage
 
 ### Get help
 
     $ z # or p --help or f --help or x --help etc
-    Command Line Program Managers (clpm) v1.0
+    Command Line Program Managers (clpm) v1.0.1
     Help commands:
                 z  - this listing
     Organization commands:
