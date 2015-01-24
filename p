@@ -116,17 +116,21 @@ sub envwrite {
     my $ofh = IO::File->new( "$ENV{HOME}/.penv", '>' );
     croak if ( !defined $ofh );
 
+    my @all;
     for ( "a" .. "z", "A" .. "Z" ) {
         my $file = $g->{files}->{$_};
         $file //= '';
         print $ofh "export $_=$file\n";
+        push @all, $file if $file;
     }
+    print $ofh qq{export all="} . join(' ',@all) . qq{"\n};
 
     for ( keys %{ $g->{files} } ) {
         my $file = $g->{files}->{$_};
         $file //= '';
         print $ofh qq{echo "$_=$file"\n};
     }
+    print $ofh qq{echo "all=(list of all files)"\n};
 
     $ofh->close;
     return;
