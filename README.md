@@ -260,7 +260,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     Writing MYMETA.yml and MYMETA.json
 
 
-### Add and run more commands, then run them
+### Add more commands, then run them
 
     $ x t 'make test'
 
@@ -360,7 +360,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
     $ cd www
 
-    $ f h page/
+    $ ls page/
     items.html          login.html          shopping_cart.html
 
     $ f h page/shopping_cart.html
