@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # purpose: clpm: Command Line Project Manager (see: p, f, fa, x, xa, z, zdir)
 
