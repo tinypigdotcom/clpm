@@ -8,7 +8,7 @@ Watch the [demo](http://youtu.be/SL2ugsr6lik).
 
 * Organize files and commands into projects and recall them with just a few keystrokes
 * Access full filename path with simple shell variables, ex: `grep apples $j`
-* Access all files at once, ex: `svn commit $al`
+* Access all files at once, ex: `svn commit $all`
 
 ## Synopsis
 
