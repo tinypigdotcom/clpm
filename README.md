@@ -1,6 +1,14 @@
 # clpm - Command Line Project Manager
 
-Command Line Project Manager (clpm) is designed to make managing sets of files easier. Files can be grouped into projects and then each file can be edited with a simple command: f \[space\]\[letter representing file\] \[ENTER\]. Sets of commands can also be associated with the group.
+Watch the [demo](http://youtu.be/SL2ugsr6lik)
+
+Command Line Project Manager (clpm) is designed to make managing sets of files easier.
+
+## Features
+
+* Organize files and commands into projects and recall them with just a few keystrokes
+* Access full filename path with simple shell variables, ex: `grep apples $j`
+* Access all files at once, ex: `svn commit $al`
 
 ## Synopsis
 
