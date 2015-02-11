@@ -1,8 +1,8 @@
 # clpm - Command Line Project Manager
 
-Watch the [demo](http://youtu.be/SL2ugsr6lik)
-
 Command Line Project Manager (clpm) is designed to make managing sets of files easier.
+
+Watch the [demo](http://youtu.be/SL2ugsr6lik).
 
 ## Features
 
