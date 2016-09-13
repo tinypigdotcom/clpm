@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# purpose: install clpm2
+# purpose: install clpm
 
 BIN=$HOME/bin
-CLPM=$HOME/clpm2
+CLPM=$HOME/clpm
 
 cd $BIN &&
 cp $CLPM/p . &&
