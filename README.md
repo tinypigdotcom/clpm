@@ -52,30 +52,31 @@ Note: if the set of files changes you will need to run `v` again.
 
 ## Installation
 
-Put "p" in your `$PATH` and then create these links to p in the same directory:
+### Basic GitHub Checkout
 
-    f     # edit file
-    fa    # edit all files
-    x     # execute command
-    xa    # execute all commands
-    z     # get help
-    zdir  # get directory of file (typically not used directly by user)
+1. Check out clpm into `~/.clpm`.
 
-Separate scripts, put somewhere in `$PATH`
+    ~~~ sh
+    $ git clone https://github.com/tinypigdotcom/clpm.git ~/.clpm
+    ~~~
 
-    af    # find and add files
-    d     # change to directory of specified file
-    v     # set shell variables for file shortcuts
+2. Run the installer
 
-Add the following lines to your `.cshrc` file (for csh and tcsh), `.profile`
-(for sh and ksh), or `.bash_profile` (for bash):
+    ~~~ sh
+    $ ~/.clpm/bin/p install
+    ~~~
 
-    alias d='. d'
-    alias v='. v'
+    **Ubuntu note**: Modify your `~/.profile` instead of `~/.bash_profile`.
+
+    **Zsh note**: Modify your `~/.zshrc` file instead of `~/.bash_profile`.
+
+3. Follow the additional instructions from the installer
 
 ## Author
 
 David M. Bradford, [davembradford@gmail.com](mailto:davembradford@gmail.com)
+Thanks to plenv for a better idea of how to do certain things like directory
+structure and documentation
 
 ## License
 
@@ -494,4 +495,5 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     m Makefile.PL                       /home/dbradford/shopping_cart/ShoppingCart
     s ShoppingCart.pm                   /home/dbradford/shopping_cart/ShoppingCart/lib
     t ShoppingCart.t                    /home/dbradford/shopping_cart/ShoppingCart/t
+
 
