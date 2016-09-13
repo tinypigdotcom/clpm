@@ -1,5 +1,0 @@
-# purpose: p
-# VERSION: 0.0.1
-_p "$@"
-source $HOME/.penv
-

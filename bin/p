@@ -1,0 +1,39 @@
+# purpose: p
+# VERSION: 0.0.1
+if [ "$*" == "install" ]; then
+    CLPM=$HOME/.clpm
+    BIN=$CLPM/bin
+
+    cd $BIN &&
+    ln -f _p _f &&
+    echo linked _f &&
+    ln -f _p fa &&
+    echo linked fa &&
+    ln -f _p x &&
+    echo linked x &&
+    ln -f _p xa &&
+    echo linked xa &&
+    ln -f _p z &&
+    echo linked z &&
+    ln -f _p zdir &&
+    echo linked zdir &&
+    chmod 700 p _p f _f fa x xa z zdir af d &&
+    echo chmod 700
+
+    cat <<'EOF'
+
+NOTE: Add the following lines to your .bash_profile
+
+alias d='. d'
+alias f='. f'
+alias p='. p'
+alias af='. af'
+source ~/.penv
+export AF_DIR=$HOME # or whatever
+
+EOF
+else
+    _p "$@"
+    source $HOME/.penv
+fi
+
