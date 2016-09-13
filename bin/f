@@ -3,5 +3,5 @@
 # VERSION=0.0.1
 
 _f "$@"
-source $HOME/.penv
+source $HOME/.clpm/clpm_env
 
