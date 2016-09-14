@@ -32,12 +32,12 @@ alias d='. d'
 alias f='. f'
 alias p='. p'
 alias af='. af'
-source ~/.clpm/clpm_env
+source ~/.clpm/environment
 export AF_DIR=$HOME # or whatever your base directory is for your code
 
 EOF
 else
     _p "$@"
-    source $HOME/.clpm/clpm_env
+    source $HOME/.clpm/environment
 fi
 

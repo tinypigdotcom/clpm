@@ -114,7 +114,7 @@ sub dump_write {
 }
 
 sub envwrite {
-    my $ofh = IO::File->new( "$CLPM_DIR/clpm_env", '>' );
+    my $ofh = IO::File->new( "$CLPM_DIR/environment", '>' );
     croak if ( !defined $ofh );
 
     my @all;
@@ -659,7 +659,7 @@ sub main {
     lock_keys( %{$g}, @g_keys );
 
     $g->{args}          = \@args;
-    $g->{infile}        = $ENV{PDUMP} || "$CLPM_DIR/clpm_dump";
+    $g->{infile}        = $ENV{PDUMP} || "$CLPM_DIR/project_dump";
 
     my @ident = ( 'a' .. 'z', 'A' .. 'Z' );
 
