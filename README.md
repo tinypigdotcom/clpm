@@ -30,25 +30,17 @@ Watch the [demo](http://youtu.be/SL2ugsr6lik).
 
     $ fa  # edit all files in project with $EDITOR
 
-    $ . d t # cd to directory containing file with shortcut "t"
-            # you can do it without the '.' if you set up alias d='. d'
+    $ d t # cd to directory containing file with shortcut "t"
 
-    $ x t ". d m;make test" # add command with shortcut "t"
-    $ x t                   # execute command assigned to shortcut "t"
+    $ x t "cd /some/target/directory; make test" # add command with shortcut "t"
+    $ x t                                        # execute command assigned to shortcut "t"
     t/DMB.t .. ok
     All tests successful.
     Files=1, Tests=1,  0 wallclock secs ( 0.05 usr  0.02 sys +  0.05 cusr
     0.03 csys =  0.14 CPU)
     Result: PASS
 
-    $ . v # assign all projects files to shell variables in the current shell
-          # you can do it without the '.' if you set up alias v='. v'
-    r=/home/dbradford/.vimrc
-    c=/home/dbradford/.vim/colors/vividchalk.vim
-
     $ cat $c >>$r # use shell commands to work with this set of files
-
-Note: if the set of files changes you will need to run `v` again.
 
 ## Installation
 
@@ -75,12 +67,13 @@ Note: if the set of files changes you will need to run `v` again.
 ## Author
 
 David M. Bradford, [davembradford@gmail.com](mailto:davembradford@gmail.com)
+
 Thanks to plenv for a better idea of how to do certain things like directory
 structure and documentation
 
 ## License
 
-Copyright (C) 2014, 2015 David M. Bradford
+Copyright (C) 2014, 2015, 2016 David M. Bradford
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -112,7 +105,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 ### Get help
 
     $ z # or p --help or f --help or x --help etc
-    Command Line Program Managers (clpm) v1.0.1
+    Command Line Program Managers (clpm) v2.0.0
     Help commands:
                 z  - this listing
     Organization commands:
@@ -121,8 +114,8 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
                     show list of files:    $ f
                     edit file 1, 3, and L: $ f 13L
                     edit all files:        $ fa
-                    add file to the list : $ f , /tmp/a.dmb /etc/hosts /etc/passwd
-                    add file with label L: $ f L /tmp/a.dmb
+                    add file to the list : $ f , /tmp/a.out /etc/hosts /etc/passwd
+                    add file with label L: $ f L /tmp/a.out
                     remove file 1, 3, L  : $ f -13L
                 x  - manage commands (same basic format as f)
                     examples:
@@ -283,6 +276,8 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     Files=1, Tests=1,  0 wallclock secs ( 0.03 usr  0.05 sys +  0.03 cusr  0.12 csys =  0.23 CPU)
     Result: PASS
 
+    $ x c 'make clean'
+
     $ x c
     make clean
     rm -f \
@@ -391,12 +386,12 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
 
 ### Change to the directory of a given file
 
-    $ . d s # you can do it without the '.' if you set up alias d='. d'
+    $ d s
 
     $ pwd
     /home/dbradford/shopping_cart/ShoppingCart/lib
 
-    $ . d c
+    $ d c
 
     $ pwd
     /home/dbradford/shopping_cart/www/style
@@ -415,16 +410,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/ .
     2 ./www/page/shopping_cart.html
 
 
-### Use v to assign full file paths to shell variables
-
-    $ . v # you can do it without the '.' if you set up alias v='. v'
-    j=/home/dbradford/shopping_cart/www/script/cartItems.js
-    t=/home/dbradford/shopping_cart/ShoppingCart/t/ShoppingCart.t
-    h=/home/dbradford/shopping_cart/www/page/shopping_cart.html
-    s=/home/dbradford/shopping_cart/ShoppingCart/lib/ShoppingCart.pm
-    c=/home/dbradford/shopping_cart/www/style/home.css
-    m=/home/dbradford/shopping_cart/ShoppingCart/Makefile.PL
-    l=/home/dbradford/shopping_cart/www/page/login.html
+### Use shell variables
 
     $ cp $l $l.sv
 
