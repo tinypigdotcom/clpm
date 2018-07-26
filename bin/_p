@@ -590,7 +590,7 @@ sub func_z {
                     show list of cmds:     \$ x
                     run cmd 1, 3, and L:   \$ x 13L
                     edit cmd 1, 3, and L:  \$ x .13L
-                    edit all cmds:         \$ xa
+                    run all cmds:          \$ xa
                     add cmd to the list :  \$ x , 'echo hey' 'Optional Label'
                         NOTE: surround command with quotes
                     add cmd with label L:  \$ x L 'echo howdy; echo there' 'Optional Label'
