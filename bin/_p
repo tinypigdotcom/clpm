@@ -565,7 +565,9 @@ sub func_x {
         if ( $na != 0 ) {
             print STDERR "Bad arguments.\n";
         }
-        print "Project: $g->{current}\n";
+        my $label = $g->{data}->{projects}->{ $g->{current} }->{label};
+        $label //= '';
+        print "Project: $g->{current} ($label)\n";
         print "Current commands:\n";
         for (
             sort { lc($a) cmp lc($b) || $b cmp $a } keys %{ $g->{cmds} }
