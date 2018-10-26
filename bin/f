@@ -3,5 +3,8 @@
 # VERSION=0.0.1
 
 _f "$@"
-source $HOME/.clpm/environment
+if [ -z "$CLPM_DIR" ]; then
+    CLPM_DIR=$HOME/.clpm/
+fi
+source $CLPM_DIR/environment
 

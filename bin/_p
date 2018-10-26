@@ -19,7 +19,7 @@ our $VERSION = '2.0.0';
 our $VAR1;
 
 my $max_prev_projects = 50;
-my $CLPM_DIR = "$ENV{HOME}/.clpm";
+my $CLPM_DIR = $ENV{CLPM_DIR} || "$ENV{HOME}/.clpm";
 
 exit main( $0, @ARGV );
 
@@ -89,7 +89,10 @@ sub dump_read {
 
 sub dump_write {
     my $ofh = IO::File->new($g->{infile}, '>');
-    croak if (!defined $ofh);
+    if ( !defined $ofh ) {
+        warn "Can't write to project file $g->{infile}.\n";
+        return;
+    }
 
     print $ofh Dumper($g->{data});
     $ofh->close;
@@ -97,8 +100,12 @@ sub dump_write {
 }
 
 sub envwrite {
-    my $ofh = IO::File->new( "$CLPM_DIR/environment", '>' );
-    croak if ( !defined $ofh );
+    my $env_file = "$CLPM_DIR/environment";
+    my $ofh = IO::File->new( $env_file, '>' );
+    if ( !defined $ofh ) {
+        warn "Can't write to environment file $env_file.\n";
+        return;
+    }
 
     my @all;
     for ( "a" .. "z", "A" .. "Z" ) {
