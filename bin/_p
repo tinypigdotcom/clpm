@@ -19,7 +19,7 @@ our $VERSION = '2.0.0';
 our $VAR1;
 
 my $max_prev_projects = 50;
-my $CLPM_DIR = "$ENV{HOME}/.clpm";
+my $CLPM_DIR = $ENV{CLPM_DIR} || "$ENV{HOME}/.clpm";
 
 exit main( $0, @ARGV );
 
