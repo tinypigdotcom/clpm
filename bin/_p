@@ -89,7 +89,10 @@ sub dump_read {
 
 sub dump_write {
     my $ofh = IO::File->new($g->{infile}, '>');
-    croak if (!defined $ofh);
+    if ( !defined $ofh ) {
+        warn "Can't write to project file $g->{infile}.\n";
+        return;
+    }
 
     print $ofh Dumper($g->{data});
     $ofh->close;
@@ -97,8 +100,12 @@ sub dump_write {
 }
 
 sub envwrite {
-    my $ofh = IO::File->new( "$CLPM_DIR/environment", '>' );
-    croak if ( !defined $ofh );
+    my $env_file = "$CLPM_DIR/environment";
+    my $ofh = IO::File->new( $env_file, '>' );
+    if ( !defined $ofh ) {
+        warn "Can't write to environment file $env_file.\n";
+        return;
+    }
 
     my @all;
     for ( "a" .. "z", "A" .. "Z" ) {
@@ -295,11 +302,18 @@ sub func_p {
         search();
     }
     elsif ( defined $cmd && $cmd eq '-' ) {
-        delete $projects->{$proj};
-        if ( $proj eq $g->{current} ) {
-            go_previous_project();
+        print "!!! Delete project !!! Are you sure? (y/N) ";
+        my $junk = <STDIN>;
+        if ( $junk =~ /^y/i ) {
+            delete $projects->{$proj};
+            if ( $proj eq $g->{current} ) {
+                go_previous_project();
+            }
+            pfreeze();
         }
-        pfreeze();
+        else {
+            print "Canceled.\n";
+        }
     }
     elsif ( !$arg ) {
         list_projects();
@@ -558,7 +572,9 @@ sub func_x {
         if ( $na != 0 ) {
             print STDERR "Bad arguments.\n";
         }
-        print "Project: $g->{current}\n";
+        my $label = $g->{data}->{projects}->{ $g->{current} }->{label};
+        $label //= '';
+        print "Project: $g->{current} ($label)\n";
         print "Current commands:\n";
         for (
             sort { lc($a) cmp lc($b) || $b cmp $a } keys %{ $g->{cmds} }
@@ -590,7 +606,7 @@ sub func_z {
                     show list of cmds:     \$ x
                     run cmd 1, 3, and L:   \$ x 13L
                     edit cmd 1, 3, and L:  \$ x .13L
-                    edit all cmds:         \$ xa
+                    run all cmds:          \$ xa
                     add cmd to the list :  \$ x , 'echo hey' 'Optional Label'
                         NOTE: surround command with quotes
                     add cmd with label L:  \$ x L 'echo howdy; echo there' 'Optional Label'
