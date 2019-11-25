@@ -302,11 +302,18 @@ sub func_p {
         search();
     }
     elsif ( defined $cmd && $cmd eq '-' ) {
-        delete $projects->{$proj};
-        if ( $proj eq $g->{current} ) {
-            go_previous_project();
+        print "!!! Delete project !!! Are you sure? (y/N) ";
+        my $junk = <STDIN>;
+        if ( $junk =~ /^y/i ) {
+            delete $projects->{$proj};
+            if ( $proj eq $g->{current} ) {
+                go_previous_project();
+            }
+            pfreeze();
         }
-        pfreeze();
+        else {
+            print "Canceled.\n";
+        }
     }
     elsif ( !$arg ) {
         list_projects();
